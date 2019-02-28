@@ -1,9 +1,11 @@
   node{
    stage('SCM Checkout'){
+
      git 'https://github.com/javahometech/my-app'
    }
    stage('Compile-Package'){
-    
-    
-      sh 'mvn package'
+    def mvnhome = tool name: 'ec2maven', type: 'maven'
+   
+      sh "${mvnhome}/bin/mvn package"
    }
+}
